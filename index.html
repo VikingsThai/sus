@@ -6,6 +6,8 @@
   <title>Viᴋings (ไวกิ้ง)</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap" rel="stylesheet" />
   <style>
+    /* CSS ของคุณที่แก้ไขไปแล้วก่อนหน้านี้ ให้ใช้ตัวล่าสุดที่คุณมี */
+    /* ... (CSS ทั้งหมดของคุณที่ผมเคยแนะนำไป) ... */
     body {
       margin: 0;
       font-family: 'Noto Sans Thai', sans-serif;
@@ -36,9 +38,8 @@
       flex-direction: row;
       background-color: rgba(255,255,255,0.85);
       padding-bottom: 100px;
-      /* เพิ่ม max-width เพื่อจำกัดขนาดรวมของเนื้อหาบนจอใหญ่ */
-      max-width: 1200px; /* สามารถปรับได้ตามต้องการ */
-      margin: 0 auto; /* จัดกึ่งกลางคอนเทนเนอร์ */
+      max-width: 1200px; 
+      margin: 0 auto; 
     }
 
     .left {
@@ -47,15 +48,15 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      box-sizing: border-box; /* สำคัญ: เพื่อให้ padding ไม่ดันภาพเกินขอบ */
+      box-sizing: border-box; 
     }
 
     picture img {
       max-width: 100%;
-      height: auto; /* ทำให้ความสูงปรับตามความกว้างโดยอัตโนมัติ */
+      height: auto; 
       border-radius: 8px;
       animation: pulseGlow 2.5s ease-in-out infinite;
-      display: block; /* กำจัดช่องว่างเล็กๆ ใต้รูปภาพ */
+      display: block; 
     }
 
     @keyframes pulseGlow {
@@ -122,11 +123,9 @@
       100% { color: #ffff66; }
     }
 
-    /* กล่องแชทโปร่งใสแบบ glassmorphism */
     .chat-box {
       flex: 1;
-      /* ปรับ min-height ให้ยืดหยุ่นมากขึ้นสำหรับมือถือ */
-      min-height: 400px; /* สำหรับ Desktop */
+      min-height: 400px; 
       border-radius: 12px;
       overflow: hidden;
       background-color: rgba(255, 255, 255, 0.1);
@@ -134,16 +133,16 @@
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      display: flex; /* เพิ่มเพื่อให้ iframe จัดการขนาดได้ดีขึ้น */
-      flex-direction: column; /* เพิ่มเพื่อให้ iframe จัดการขนาดได้ดีขึ้น */
+      display: flex; 
+      flex-direction: column; 
     }
 
     .chat-box iframe {
       width: 100%;
-      height: 100%; /* ให้ iframe ใช้ความสูงเต็มพื้นที่ของ chat-box */
+      height: 100%; 
       border: none;
       background: transparent;
-      display: block; /* กำจัดช่องว่างเล็กๆ */
+      display: block; 
     }
 
     .radio-links {
@@ -161,7 +160,7 @@
     @media (max-width:768px) {
       .container {
         flex-direction: column;
-        padding-bottom: 50px; /* ลด padding ด้านล่างสำหรับมือถือ */
+        padding-bottom: 50px; 
       }
 
       .left, .right {
@@ -170,31 +169,31 @@
       }
 
       .chat-box {
-        min-height: 300px; /* ลด min-height ลงอีกเพื่อความยืดหยุ่นบนมือถือ */
-        margin-left: 5px; /* เพิ่มระยะห่างด้านข้างเล็กน้อย */
-        margin-right: 5px; /* เพิ่มระยะห่างด้านข้างเล็กน้อย */
+        min-height: 300px; 
+        margin-left: 5px; 
+        margin-right: 5px; 
       }
-      
+
       .radio-links {
         margin-top: 10px;
       }
-      
+
       .radio-links iframe {
-        width: 180px; /* ปรับขนาดวิทยุให้เหมาะกับมือถือ */
-        height: 55px; /* ปรับขนาดวิทยุให้เหมาะกับมือถือ */
+        width: 180px; 
+        height: 55px; 
       }
 
       .header-bar {
         flex-direction: column;
         align-items: flex-start;
       }
-      
+
       .header-bar img {
-        height: 40px; /* ลดขนาดโลโก้บนมือถือ */
+        height: 40px; 
       }
 
       .nickname {
-        font-size: 16px; /* ลดขนาดตัวอักษรบนมือถือ */
+        font-size: 16px; 
       }
     }
 
@@ -213,15 +212,14 @@
       text-decoration: none;
     }
 
-    /* หิมะ CSS - เพิ่มขนาดและคงความทึบ */
     .snowflake {
       position: fixed;
-      top: -80px; /* เริ่มต้นเหนือหน้าจอ */
+      top: -80px; 
       background-image: url('https://i.ibb.co/dyBRkbX/image.png');
       background-size: contain;
       background-repeat: no-repeat;
       pointer-events: none;
-      opacity: 1; /* ไม่โปร่ง */
+      opacity: 1; 
       animation-name: fall;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
@@ -231,15 +229,14 @@
     @keyframes fall {
       0% {
         transform: translateY(0) translateX(0);
-        opacity: 1; /* ตรวจสอบให้แน่ใจว่าโปร่งแสงเต็มที่ตลอด */
+        opacity: 1; 
       }
       100% {
         transform: translateY(100vh) translateX(30px);
-        opacity: 1; /* ตรวจสอบให้แน่ใจว่าโปร่งแสงเต็มที่ตลอด */
+        opacity: 1; 
       }
     }
 
-    /* ปรับขนาดหิมะให้ใหญ่ขึ้นและคงความทึบ */
     .snowflake:nth-child(1) { left: 5%; width: 100px; height: 100px; animation-duration: 12s; animation-delay: 0s; }
     .snowflake:nth-child(2) { left: 15%; width: 80px; height: 80px; animation-duration: 10s; animation-delay: 2s; }
     .snowflake:nth-child(3) { left: 25%; width: 90px; height: 90px; animation-duration: 14s; animation-delay: 4s; }
@@ -257,7 +254,7 @@
     <div class="left">
       <picture>
         <source media="(max-width: 768px)" srcset="https://i.ibb.co/0KB6bhq/viking-small.jpg" />
-        <img src="https://i.ibb.co/WvgPyJsX/viking.jpg" alt="viking" />
+        <img id="viking-image" src="https://i.ibb.co/WvgPyJsX/viking.jpg" alt="viking" />
       </picture>
     </div>
 
@@ -271,16 +268,20 @@
       </div>
 
       <div class="chat-box">
-        <iframe 
-          src="https://supersusvikings.chatango.com/iframe" 
-          title="Chatroom" 
-          allowtransparency="true" 
-          scrolling="no">
+        <iframe  
+          src="https://supersusvikings.chatango.com/iframe"  
+          title="Chatroom"  
+          allowtransparency="true"  
+          scrolling="no"
+          loading="lazy">
         </iframe>
       </div>
 
       <div class="radio-links">
-        <iframe src="https://www.notradio.in.th/code/radio2/radio.php" width="201" height="61" frameborder="no" scrolling="no"></iframe>
+        <iframe src="https://www.notradio.in.th/code/radio2/radio.php" 
+          width="201" height="61" frameborder="no" scrolling="no"
+          loading="lazy">
+        </iframe>
       </div>
 
       <footer>
@@ -298,6 +299,33 @@
   <div class="snowflake"></div>
   <div class="snowflake"></div>
   <div class="snowflake"></div>
+
+  <script>
+    // JavaScript สำหรับการเปลี่ยนรูปภาพสำหรับมือถือ (เป็นการสำรองเผื่อ <picture> มีปัญหา)
+    // เพิ่ม id="viking-image" ที่แท็ก <img>
+    const vikingImage = document.getElementById('viking-image');
+    const mobileImageSrc = 'https://i.ibb.co/0KB6bhq/viking-small.jpg';
+    const desktopImageSrc = 'https://i.ibb.co/WvgPyJsX/viking.jpg';
+
+    function adjustImageSrc() {
+      if (window.innerWidth <= 768) {
+        // ถ้าหน้าจอเล็กกว่าหรือเท่ากับ 768px และรูปภาพยังไม่ใช่เวอร์ชั่นมือถือ
+        if (vikingImage.src !== mobileImageSrc) {
+          vikingImage.src = mobileImageSrc;
+        }
+      } else {
+        // ถ้าหน้าจอใหญ่กว่า 768px และรูปภาพยังไม่ใช่เวอร์ชั่นเดสก์ท็อป
+        if (vikingImage.src !== desktopImageSrc) {
+          vikingImage.src = desktopImageSrc;
+        }
+      }
+    }
+
+    // เรียกใช้เมื่อโหลดหน้าเว็บ
+    adjustImageSrc();
+    // เรียกใช้เมื่อปรับขนาดหน้าจอ
+    window.addEventListener('resize', adjustImageSrc);
+  </script>
 
 </body>
 </html>
