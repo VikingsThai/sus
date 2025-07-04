@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Viᴋings (ไวกิ้ง)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans Thai', sans-serif;
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet, red);
+      background-size: 1600% 1600%;
+      animation: rainbow 30s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      background-color: rgba(255,255,255,0.85);
+      padding-bottom: 100px;
+      /* เพิ่ม max-width เพื่อจำกัดขนาดรวมของเนื้อหาบนจอใหญ่ */
+      max-width: 1200px; /* สามารถปรับได้ตามต้องการ */
+      margin: 0 auto; /* จัดกึ่งกลางคอนเทนเนอร์ */
+    }
+
+    .left {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box; /* สำคัญ: เพื่อให้ padding ไม่ดันภาพเกินขอบ */
+    }
+
+    picture img {
+      max-width: 100%;
+      height: auto; /* ทำให้ความสูงปรับตามความกว้างโดยอัตโนมัติ */
+      border-radius: 8px;
+      animation: pulseGlow 2.5s ease-in-out infinite;
+      display: block; /* กำจัดช่องว่างเล็กๆ ใต้รูปภาพ */
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    .right {
+      flex: 1;
+      padding: 20px;
+      background-image: url('https://i.ibb.co/YFvtHbs6/image.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      border-radius: 0;
+      color: white;
+    }
+
+    .right::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+      border-radius: 0;
+    }
+
+    .right > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+    }
+
+    .header-bar img {
+      height: 50px;
+      flex-shrink: 0;
+    }
+
+    .nickname {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .blinking-text {
+      animation: blinkColor 1s infinite alternate;
+      font-weight: bold;
+    }
+
+    @keyframes blinkColor {
+      0%    { color: #ffa500; }
+      100% { color: #ffff66; }
+    }
+
+    /* กล่องแชทโปร่งใสแบบ glassmorphism */
+    .chat-box {
+      flex: 1;
+      /* ปรับ min-height ให้ยืดหยุ่นมากขึ้นสำหรับมือถือ */
+      min-height: 400px; /* สำหรับ Desktop */
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      display: flex; /* เพิ่มเพื่อให้ iframe จัดการขนาดได้ดีขึ้น */
+      flex-direction: column; /* เพิ่มเพื่อให้ iframe จัดการขนาดได้ดีขึ้น */
+    }
+
+    .chat-box iframe {
+      width: 100%;
+      height: 100%; /* ให้ iframe ใช้ความสูงเต็มพื้นที่ของ chat-box */
+      border: none;
+      background: transparent;
+      display: block; /* กำจัดช่องว่างเล็กๆ */
+    }
+
+    .radio-links {
+      margin-top: 20px;
+      font-size: 16px;
+      color: white;
+      display: flex;
+      justify-content: center;
+    }
+    .radio-links iframe {
+      border: none;
+      border-radius: 8px;
+    }
+
+    @media (max-width:768px) {
+      .container {
+        flex-direction: column;
+        padding-bottom: 50px; /* ลด padding ด้านล่างสำหรับมือถือ */
+      }
+
+      .left, .right {
+        flex: 1 1 100%;
+        padding: 10px;
+      }
+
+      .chat-box {
+        min-height: 300px; /* ลด min-height ลงอีกเพื่อความยืดหยุ่นบนมือถือ */
+        margin-left: 5px; /* เพิ่มระยะห่างด้านข้างเล็กน้อย */
+        margin-right: 5px; /* เพิ่มระยะห่างด้านข้างเล็กน้อย */
+      }
+      
+      .radio-links {
+        margin-top: 10px;
+      }
+      
+      .radio-links iframe {
+        width: 180px; /* ปรับขนาดวิทยุให้เหมาะกับมือถือ */
+        height: 55px; /* ปรับขนาดวิทยุให้เหมาะกับมือถือ */
+      }
+
+      .header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .header-bar img {
+        height: 40px; /* ลดขนาดโลโก้บนมือถือ */
+      }
+
+      .nickname {
+        font-size: 16px; /* ลดขนาดตัวอักษรบนมือถือ */
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    /* หิมะ CSS - เพิ่มขนาดและคงความทึบ */
+    .snowflake {
+      position: fixed;
+      top: -80px; /* เริ่มต้นเหนือหน้าจอ */
+      background-image: url('https://i.ibb.co/dyBRkbX/image.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      opacity: 1; /* ไม่โปร่ง */
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 9999;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 1; /* ตรวจสอบให้แน่ใจว่าโปร่งแสงเต็มที่ตลอด */
+      }
+      100% {
+        transform: translateY(100vh) translateX(30px);
+        opacity: 1; /* ตรวจสอบให้แน่ใจว่าโปร่งแสงเต็มที่ตลอด */
+      }
+    }
+
+    /* ปรับขนาดหิมะให้ใหญ่ขึ้นและคงความทึบ */
+    .snowflake:nth-child(1) { left: 5%; width: 100px; height: 100px; animation-duration: 12s; animation-delay: 0s; }
+    .snowflake:nth-child(2) { left: 15%; width: 80px; height: 80px; animation-duration: 10s; animation-delay: 2s; }
+    .snowflake:nth-child(3) { left: 25%; width: 90px; height: 90px; animation-duration: 14s; animation-delay: 4s; }
+    .snowflake:nth-child(4) { left: 35%; width: 60px; height: 60px; animation-duration: 13s; animation-delay: 1s; }
+    .snowflake:nth-child(5) { left: 50%; width: 110px; height: 110px; animation-duration: 11s; animation-delay: 3s; }
+    .snowflake:nth-child(6) { left: 60%; width: 80px; height: 80px; animation-duration: 12s; animation-delay: 5s; }
+    .snowflake:nth-child(7) { left: 70%; width: 90px; height: 90px; animation-duration: 15s; animation-delay: 2s; }
+    .snowflake:nth-child(8) { left: 80%; width: 60px; height: 60px; animation-duration: 10s; animation-delay: 4s; }
+    .snowflake:nth-child(9) { left: 90%; width: 100px; height: 100px; animation-duration: 13s; animation-delay: 6s; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="left">
+      <picture>
+        <source media="(max-width: 768px)" srcset="https://i.ibb.co/0KB6bhq/viking-small.jpg" />
+        <img src="https://i.ibb.co/WvgPyJsX/viking.jpg" alt="viking" />
+      </picture>
+    </div>
+
+    <div class="right">
+      <div class="header-bar">
+        <img src="https://i.ibb.co/bghwtJhc/super-susssss.png" alt="SuperSus Logo" />
+        <div class="nickname">
+          สวัสดีครับเพื่อนๆ เราชื่อ 
+          <span class="blinking-text">Viᴋings (ไวกิ้ง)</span>
+        </div>
+      </div>
+
+      <div class="chat-box">
+        <iframe 
+          src="https://supersusvikings.chatango.com/iframe" 
+          title="Chatroom" 
+          allowtransparency="true" 
+          scrolling="no">
+        </iframe>
+      </div>
+
+      <div class="radio-links">
+        <iframe src="https://www.notradio.in.th/code/radio2/radio.php" width="201" height="61" frameborder="no" scrolling="no"></iframe>
+      </div>
+
+      <footer>
+        <p>&copy; 2025 โดย Viᴋings (ไวกิ้ง) SuperSus Thailand</p>
+      </footer>
+    </div>
+  </div>
+
+  <div class="snowflake"></div>
+  <div class="snowflake"></div>
+  <div class="snowflake"></div>
+  <div class="snowflake"></div>
+  <div class="snowflake"></div>
+  <div class="snowflake"></div>
+  <div class="snowflake"></div>
+  <div class="snowflake"></div>
+  <div class="snowflake"></div>
+
+</body>
+</html>
